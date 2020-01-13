@@ -38,20 +38,54 @@
                                                 </div>
                                                 <div class="widget-content-left">
                                                     <div class="widget-heading">EMail</div>
-                                                    <div class="widget-subheading opacity-8">ФИО</div>
+                                                    <div class="widget-subheading opacity-8">ФИО</div>                                      
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="scroll-area-xs" style="height: 150px;">
                                 <VuePerfectScrollbar class="scrollbar-container" v-once>
-            
+                                    <li class="list-group-item list-group-item-action">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">
+                                                           <i class="pe-7s-users"></i>
+                                                       Пользователи  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                             <li class="list-group-item list-group-item-action">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">
+                                                           <i class="pe-7s-cash"></i>
+                                                      Finance       
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                        <li class="list-group-item list-group-item-action">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">
+                                                    <i class="pe-7s-mail"></i>
+                                                        Tickets
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                 </VuePerfectScrollbar>
                             </div>
-
-
                         </b-dropdown>
                     </div>   
                 </div>
@@ -66,8 +100,7 @@
 
 <script>
     import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-    import VueCircle from 'vue2-circle-progress'
-    import Trend from 'vuetrend';
+
 
     import {library} from '@fortawesome/fontawesome-svg-core'
     import {
@@ -82,7 +115,7 @@
         faFileArchive,
         faEllipsisH,
     } from '@fortawesome/free-solid-svg-icons'
-    import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+
 
     library.add(
         faAngleDown,
@@ -100,15 +133,12 @@
     export default {
         components: {
             VuePerfectScrollbar,
-            'font-awesome-icon': FontAwesomeIcon,
-            VueCircle,
-            'trend': Trend,
         },
         data: () => ({
             fill1: {gradient: ["#00b09b", "#96c93d"]},
             fill2: {gradient: ["#ff0844", "#ffb199"]},
             fill3: {gradient: ["#f6d365", "#fda085"]},
-            showDrawerSection: false
+            showDrawerSection: false,
         }),
 
         methods: {}

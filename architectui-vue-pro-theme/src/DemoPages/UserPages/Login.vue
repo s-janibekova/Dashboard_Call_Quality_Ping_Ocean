@@ -3,55 +3,14 @@
         <transition name="fade" mode="out-in" appear>
             <div class="h-100">
                 <b-row class="h-100 no-gutters">
-                    <b-col lg="4" class="d-none d-lg-block">
-                        <div class="slider-light">
-                            <slick ref="slick" :options="slickOptions6">
-                                <div
-                                    class="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate">
-                                    <div class="slide-img-bg"/>
-                                    <div class="slider-content text-light">
-                                        <h3>Perfect Balance</h3>
-                                        <p>
-                                            ArchitectUI is like a dream. Some think it's too good to be true! Extensive collection of unified Vue Bootstrap Components and Elements.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div
-                                    class="position-relative h-100 d-flex justify-content-center align-items-center bg-premium-dark">
-                                    <div class="slide-img-bg"/>
-                                    <div class="slider-content text-light">
-                                        <h3>Scalable, Modular, Consistent</h3>
-                                        <p>
-                                            Easily exclude the components you don't require. Lightweight, consistent
-                                            Bootstrap based styles across all elements and components
-                                        </p>
-                                    </div>
-                                </div>
-                                <div
-                                    class="position-relative h-100 d-flex justify-content-center align-items-center bg-sunny-morning">
-                                    <div class="slide-img-bg opacity-6"/>
-                                    <div class="slider-content text-light">
-                                        <h3>Complex, but lightweight</h3>
-                                        <p>
-                                            We've included a lot of components that cover almost all use cases for
-                                            any type of application.
-                                        </p>
-                                    </div>
-                                </div>
-                            </slick>
-                        </div>
-                    </b-col>
                     <b-col lg="8" md="12" class="h-100 d-flex bg-white justify-content-center align-items-center">
                         <b-col lg="9" md="10" sm="12" class="mx-auto app-login-box">
                             <div class="app-logo"/>
                             <h4 class="mb-0">
                                 <div>Welcome back,</div>
                                 <span>Please sign in to your account.</span>
+                                <button @click="getProfileData()">Get profile data</button>
                             </h4>
-                            <h6 class="mt-3">
-                                No account?
-                                <a href="javascript:void(0);" class="text-primary">Sign up now</a>
-                            </h6>
                             <div class="divider"/>
                             <div>
                                 <Form>
@@ -71,15 +30,10 @@
                                             </b-form-group>
                                         </b-col>
                                     </b-row>
-                                    <b-form-checkbox name="check" id="exampleCheck">
-                                        Keep me logged in
-                                    </b-form-checkbox>
                                     <div class="divider"/>
                                     <div class="d-flex align-items-center">
                                         <div class="ml-auto">
-                                            <a href="javascript:void(0);" class="btn-lg btn btn-link">Recover
-                                                Password</a>
-                                            <b-button variant="primary" size="lg">Login to Dashboard</b-button>
+                                            <b-button variant="primary" size="lg" @click="login()">Login to Dashboard</b-button>
                                         </div>
                                     </div>
                                 </Form>
@@ -93,56 +47,72 @@
 </template>
 
 <script>
-
-    import Slick from 'vue-slick';
-
+import axios from 'axios'
     export default {
-        components: {
-            Slick
-        },
         data: () => ({
-
-            slickOptions6: {
-                dots: true,
-                infinite: true,
-                speed: 500,
-                arrows: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                fade: true,
-                initialSlide: 0,
-                autoplay: true,
-                adaptiveHeight: true
-            },
 
             slide: 0,
             sliding: null
         }),
 
         methods: {
-            handleClick(newTab) {
-                this.currentTab = newTab;
-            },
-            next() {
-                this.$refs.slick.next();
-            },
 
-            prev() {
-                this.$refs.slick.prev();
-            },
 
-            reInit() {
-                this.$nextTick(() => {
-                    this.$refs.slick.reSlick();
-                });
-            },
 
-            onSlideStart(slide) {
-                this.sliding = true
-            },
-            onSlideEnd(slide) {
-                this.sliding = false
-            }
-        }
+// function getBoardData () {
+//   return axios
+//     .get('http://107.175.113.196:8080/api/v1/customers')
+//     .then(data => {
+//       data.data.forEach(element => {
+//       return board
+//     })
+
+
+
+
+    login () {
+
+
+        var session_url = 'https://api.pingocean.com:8081/auth';
+        var uname = 'testregister@activ.kz';
+        var pass = '123456';
+        axios.post(session_url, {
+            'email': uname,
+            'password': pass
+            }).then(function(response) {
+            const token = "Bearer "+response.data.token;
+            localStorage.setItem('user', JSON.stringify(token))
+                console.log(token)
+        }).catch(function(error) {
+        console.log(error);
+        });
+                },
+
+
+    getProfileData(){
+    var session_url = 'https://api.pingocean.com:8081/profile';
+    const token = localStorage.getItem('user')
+    axios.defaults.headers.common['Authorization'] = JSON.parse(token)
+
+    axios.get(session_url).then(function(response) {
+    
+    console.log(response)
+
+    }).catch(function(error) {
+    console.log(error);
+    });
     }
+        },
+ 
+    }
+
+
+//     Учетная запись:
+// POST https://api.pingocean.com:8081/auth
+// {
+//   "email": "testregister@activ.kz",
+//   "password":   "123456"
+// }
+
+// POST https://api.pingocean.com:8081/profile - передавать Bearer Token полученный в прошлом запросе
 </script>

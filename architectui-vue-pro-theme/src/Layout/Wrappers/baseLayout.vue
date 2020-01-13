@@ -9,7 +9,7 @@
         </transition>
         <div class="app-main__outer">
             <div class="app-main__inner">
-                <!-- <slot></slot> -->
+                <Login/>
             </div>
             <transition name="fade" mode="out-in" appear>
                 <Footer/>
@@ -23,6 +23,7 @@
     import Header from "../Components/Header";
     import Sidebar from "../Components/Sidebar";
     import Footer from "../Components/Footer";
+    import Login from '../../DemoPages/UserPages/Login.vue'
     // import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 
     import {library} from '@fortawesome/fontawesome-svg-core'
@@ -39,6 +40,7 @@
             Header,
             Sidebar,
             Footer,
+            Login
 
         },
         methods: {
