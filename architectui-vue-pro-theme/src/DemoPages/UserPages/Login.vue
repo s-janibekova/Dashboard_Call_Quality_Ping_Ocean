@@ -9,7 +9,7 @@
                             <h4 class="mb-0">
                                 <div>Welcome back,</div>
                                 <span>Please sign in to your account.</span>
-                                <button @click="getProfileData()">Get profile data</button>
+                                <button @click="getUserData()">Get profile data</button>
                             </h4>
                             <div class="divider"/>
                             <div>
@@ -47,72 +47,25 @@
 </template>
 
 <script>
-import axios from 'axios'
     export default {
         data: () => ({
 
             slide: 0,
-            sliding: null
+            sliding: null,
+            loggedIn: false 
         }),
 
         methods: {
-
-
-
-// function getBoardData () {
-//   return axios
-//     .get('http://107.175.113.196:8080/api/v1/customers')
-//     .then(data => {
-//       data.data.forEach(element => {
-//       return board
-//     })
-
-
-
-
-    login () {
-
-
-        var session_url = 'https://api.pingocean.com:8081/auth';
+        login () {
         var uname = 'testregister@activ.kz';
         var pass = '123456';
-        axios.post(session_url, {
-            'email': uname,
-            'password': pass
-            }).then(function(response) {
-            const token = "Bearer "+response.data.token;
-            localStorage.setItem('user', JSON.stringify(token))
-                console.log(token)
-        }).catch(function(error) {
-        console.log(error);
-        });
-                },
-
-
-    getProfileData(){
-    var session_url = 'https://api.pingocean.com:8081/profile';
-    const token = localStorage.getItem('user')
-    axios.defaults.headers.common['Authorization'] = JSON.parse(token)
-
-    axios.get(session_url).then(function(response) {
-    
-    console.log(response)
-
-    }).catch(function(error) {
-    console.log(error);
-    });
+        this.$store.dispatch('login', {"email": uname, "password": pass})   
+        },
+        getUserData(){
+        this.$store.dispatch('getUserData') 
+   
     }
         },
  
     }
-
-
-//     Учетная запись:
-// POST https://api.pingocean.com:8081/auth
-// {
-//   "email": "testregister@activ.kz",
-//   "password":   "123456"
-// }
-
-// POST https://api.pingocean.com:8081/profile - передавать Bearer Token полученный в прошлом запросе
 </script>

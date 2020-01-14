@@ -8,9 +8,22 @@
             <Sidebar :sidebarbg="sidebarcolor"/>
         </transition>
         <div class="app-main__outer">
-            <div class="app-main__inner">
+            <div v-if="!loggedIn" class="app-main__inner">
                 <Login/>
             </div>
+            <div v-if="loggedIn"> 
+                <div class="card text-center">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> Hello Dear {{ user["data"]["name"]}} </h5>
+                <p class="card-text">Glad to meet you !</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+
+            </div>
+                </div>
             <transition name="fade" mode="out-in" appear>
                 <Footer/>
             </transition>
@@ -20,6 +33,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
     import Header from "../Components/Header";
     import Sidebar from "../Components/Sidebar";
     import Footer from "../Components/Footer";
@@ -43,6 +58,15 @@
             Login
 
         },
+          computed: {
+              
+            ...mapState(['user', 'token']),
+              loggedIn () {
+            return this.$store.getters.loggedIn
+  }
+
+            
+          },
         methods: {
             toggleConfig(className) {
                 const el = document.body;
@@ -54,6 +78,7 @@
                     el.classList.remove(className);
                 }
             },
+
         },
 
         data() {
@@ -106,3 +131,10 @@
         },
     }
 </script>
+
+<style>
+.card {
+    padding-bottom: 40%;
+}
+
+</style>
