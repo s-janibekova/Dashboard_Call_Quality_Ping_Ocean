@@ -6,7 +6,7 @@ Vue js application , dashboard for clients
 
 npm install 
 
-2) Serve the project 
+2) Serve the project in architectui-vue-pro-theme
 
 npm run serve
 
