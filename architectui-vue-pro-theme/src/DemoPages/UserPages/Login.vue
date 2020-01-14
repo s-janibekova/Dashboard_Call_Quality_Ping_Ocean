@@ -8,8 +8,6 @@
                             <div class="app-logo"/>
                             <h4 class="mb-0">
                                 <div>Welcome back,</div>
-                                <span>Please sign in to your account.</span>
-                                <button @click="getUserData()">Get profile data</button>
                             </h4>
                             <div class="divider"/>
                             <div>

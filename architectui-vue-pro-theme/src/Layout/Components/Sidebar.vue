@@ -36,70 +36,62 @@
                 menu: [
                     {
                         header: true,
-                        title: 'Main Navigation',
+                        title: 'Fraud detection',
                     },
                     {
-                        title: 'Dashboards',
-                        icon: 'pe-7s-rocket',
+                        title: 'Tasks (Задачи)',
                         child: [
                         ]
                     },
                     {
-                        title: 'Pages',
-                        icon: 'pe-7s-browser',
+                        title: 'Tasks (Задачи)',
                         child: [
 
                         ]
                     },
                     {
-                        title: 'Applications',
-                        icon: 'pe-7s-plugin',
+                        title: 'Numbers',
                         child: [
                         ]
                     },
                     {
                         header: true,
-                        title: 'UI Components',
+                        title: 'Routes Quality',
                     },
                     {
-                        icon: 'pe-7s-diamond',
-                        title: 'Elements',
+                      
+                        title: 'Scripts (Сценарии)',
                         child: [
                           
                         ],
                     },
                     {
-                        icon: 'pe-7s-car',
-                        title: 'Components',
+                        title: 'Tests (Тесты)',
                         child: [
 
                         ],
                     },
                     {
-                        icon: 'pe-7s-display2',
-                        title: 'Tables',
+                        title: 'Operators (Операторы)',
                         child: [
                         ]
                     },
                     {
                         header: true,
-                        title: 'Material Components',
+                        title: 'Settings',
                     },
                     {
-                        icon: 'pe-7s-diamond',
-                        title: 'Form Controls',
+                        title: 'SIP trunks (SIP транки)',
                         child: [
                         ]
                     },
                     {
-                        icon: 'pe-7s-diamond',
-                        title: 'Layout',
+                        title: 'Operator numbers (Номера оператора) ',
                         child: [
                         ]
                     },
                     {
-                        icon: 'pe-7s-diamond',
-                        title: 'Popups & Modals',
+                        title: ' MNP (MNP)',
                         child: [
 
                         ]
