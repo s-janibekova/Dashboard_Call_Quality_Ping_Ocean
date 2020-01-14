@@ -18,14 +18,14 @@
                                         <b-col md="6">
                                             <b-form-group>
                                                 <Label for="exampleEmail">Email</Label>
-                                                <b-form-input type="email" name="email" id="exampleEmail"
+                                                <b-form-input  v-model="email" type="email" name="email" id="exampleEmail"
                                                               placeholder="Email here..."/>
                                             </b-form-group>
                                         </b-col>
                                         <b-col md="6">
                                             <b-form-group>
                                                 <Label for="examplePassword">Password</Label>
-                                                <b-form-input type="password" name="password" id="examplePassword"
+                                                <b-form-input v-model="password" type="password" name="password" id="examplePassword"
                                                               placeholder="Password here..."/>
                                             </b-form-group>
                                         </b-col>
@@ -49,7 +49,8 @@
 <script>
     export default {
         data: () => ({
-
+            email: '',
+            password: '',
             slide: 0,
             sliding: null,
             loggedIn: false 
@@ -57,8 +58,8 @@
 
         methods: {
         login () {
-        var uname = 'testregister@activ.kz';
-        var pass = '123456';
+        var uname = this.email;
+        var pass = this.password;
         this.$store.dispatch('login', {"email": uname, "password": pass})   
         },
         getUserData(){

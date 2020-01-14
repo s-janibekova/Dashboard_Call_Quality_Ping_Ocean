@@ -36,9 +36,10 @@ export default new Vuex.Store({
         login ({ commit }, credentials) {
             return axios
               .post('https://api.pingocean.com:8081/auth', credentials)
-              .then(() => {
+              .then(data => {
+                 localStorage.setItem('user',"Bearer" +  data.data.token)
                 const token = localStorage.getItem('user')
-            axios.defaults.headers.common['Authorization'] = JSON.parse(token)
+            axios.defaults.headers.common['Authorization'] = token
             axios.get("https://api.pingocean.com:8081/profile").then(data =>{
               commit('SET_USER_DATA', data)
               })
